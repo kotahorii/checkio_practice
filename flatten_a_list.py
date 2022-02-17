@@ -39,17 +39,21 @@ def end_zeros(num: int) -> int:
     return len(s := str(num)) - len(s.strip("0"))
 
 
-def backward_string(val: str):
-    val_list = [s for s in val]
-    len_str = len(val)
-    index = 0
-    while index < (len_str - 1) / 2:
-        val_list[index], val_list[len_str - 1 - index] = (
-            val_list[len_str - 1 - index],
-            val_list[index],
-        )
-        index += 1
-    return "".join(val_list)
+# def backward_string(val: str):
+#     val_list = [s for s in val]
+#     len_str = len(val)
+#     index = 0
+#     while index < (len_str - 1) / 2:
+#         val_list[index], val_list[len_str - 1 - index] = (
+#             val_list[len_str - 1 - index],
+#             val_list[index],
+#         )
+#         index += 1
+#     return "".join(val_list)
+
+# best solution
+def backward_string(val: str) -> str:
+    return val[::-1]
 
 
 if __name__ == "__main__":

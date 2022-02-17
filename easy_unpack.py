@@ -1,7 +1,10 @@
 def easy_unpack(elements: tuple) -> tuple[int, int, int]:
-    len_tuple = len(elements)
-    return (elements[0], elements[2], elements[len_tuple - 2])
+    return (elements[0], elements[2], elements[-2])
+
+
+def remove_all_before(items: list, border: int) -> list[int]:
+    return items
 
 
 if __name__ == "__main__":
-    print(easy_unpack((6, 2, 9, 4, 3, 9)))
+    print(remove_all_before([1, 2, 3, 4, 5], 3))
