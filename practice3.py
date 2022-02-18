@@ -76,25 +76,33 @@ def between_markers(text: str, begin: str, end: str) -> str:
     return text[text.index(begin) + 1 : text.index(end)]
 
 
+# def correct_sentence(text: str) -> str:
+#     return (
+#         text[:1].upper() + text[1:] + ""
+#         if text[-1] == "."
+#         else text[:1].upper() + text[1:] + "."
+#     )
+
+# best solution
 def correct_sentence(text: str) -> str:
-    return (
-        text[:1].upper() + text[1:] + ""
-        if text[-1] == "."
-        else text[:1].upper() + text[1:] + "."
-    )
+    return text[0].upper() + text[1:] + ("." if text[-1] != "." else "")
 
 
 def is_even(num: int) -> bool:
     return num % 2 == 0
 
 
+# def sum_numbers(text: str) -> int:
+#     string_list = text.split(" ")
+#     result_num = 0
+#     for string in string_list:
+#         if string.isdigit():
+#             result_num += int(string)
+#     return result_num
+
+# best solution
 def sum_numbers(text: str) -> int:
-    string_list = text.split(" ")
-    result_num = 0
-    for string in string_list:
-        if string.isdigit():
-            result_num += int(string)
-    return result_num
+    return sum(map(int, filter(str.isdigit, text.split())))
 
 
 if __name__ == "__main__":
