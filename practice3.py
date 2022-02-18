@@ -59,15 +59,43 @@ def beginning_zeros(number: str) -> int:
     return len(number) - len(number.lstrip("0"))
 
 
+# def nearest_value(values: set[int], one: int) -> int:
+#     nearest_value = min({abs(value - one) for value in values})
+#     return one - nearest_value if one - nearest_value in values else one + nearest_value
+
+# best solution
 def nearest_value(values: set[int], one: int) -> int:
-    nearest_value = min({abs(value - one) for value in values})
-    return one - nearest_value if one - nearest_value in values else one + nearest_value
+    return min(values, key=lambda n: (abs(one - n), n))
 
 
+# def between_markers(text: str, begin: str, end: str) -> str:
+#     return text.split(begin)[-1].split(end)[0]
+
+# best solution
 def between_markers(text: str, begin: str, end: str) -> str:
-    text = text.split(begin)[-1].split(end)[0]
-    return text
+    return text[text.index(begin) + 1 : text.index(end)]
+
+
+def correct_sentence(text: str) -> str:
+    return (
+        text[:1].upper() + text[1:] + ""
+        if text[-1] == "."
+        else text[:1].upper() + text[1:] + "."
+    )
+
+
+def is_even(num: int) -> bool:
+    return num % 2 == 0
+
+
+def sum_numbers(text: str) -> int:
+    string_list = text.split(" ")
+    result_num = 0
+    for string in string_list:
+        if string.isdigit():
+            result_num += int(string)
+    return result_num
 
 
 if __name__ == "__main__":
-    print(between_markers("[an apple]", "[", "]"))
+    print(sum_numbers("5 plus 6 is"))
