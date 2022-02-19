@@ -1,4 +1,6 @@
 import heapq
+from collections import Counter
+from typing import Optional
 
 
 def bigger_price(limit: int, data: list):
@@ -29,18 +31,21 @@ def between_markers(text: str, begin: str, end: str) -> str:
 
 
 def popular_words(text: str, words: list[str]) -> dict[str, int]:
-    pass
+    return {key: Counter(text.lower().split())[key] for key in words}
+
+
+def second_index(text: str, symbol: str) -> Optional[int]:
+    if symbol not in text:
+        return
+
+    count = 0
+    for i, char in enumerate(text):
+        if char == symbol:
+            count += 1
+        if count == 2:
+            return i
+    return
 
 
 if __name__ == "__main__":
-    print(
-        popular_words(
-            """
-When I was One
-I had just begun
-When I was Two
-I was nearly new
-""",
-            ["i", "was", "three", "near"],
-        )
-    )
+    print(second_index("find the river", "e"))
