@@ -1,6 +1,6 @@
 import re
 from collections import Counter
-from datetime import datetime
+from datetime import date, datetime
 
 # def checkio(array: list[int]) -> int:
 #     if not array:
@@ -74,19 +74,30 @@ def first_word(text: str) -> str:
 YearMonthDay = tuple[int, int, int]
 
 
-def days_diff(first_tuple: YearMonthDay, second_tuple: YearMonthDay) -> int:
-    diff = datetime(first_tuple[0], first_tuple[1], first_tuple[2]) - datetime(
-        second_tuple[0], second_tuple[1], second_tuple[2]
-    )
-    return abs(diff.days)
+# def days_diff(first_tuple: YearMonthDay, second_tuple: YearMonthDay) -> int:
+#     diff = datetime(first_tuple[0], first_tuple[1], first_tuple[2]) - datetime(
+#         second_tuple[0], second_tuple[1], second_tuple[2]
+#     )
+#     return abs(diff.days)
+
+# best solution
+def days_diff(date1: YearMonthDay, date2: YearMonthDay) -> int:
+    f = date(*date1)
+    b = date(*date2)
+    a = (f - b).days
+    return abs(a)
 
 
+# def count_digits(text: str) -> int:
+#     count = 0
+#     for k, v in Counter(text).items():
+#         if k.isdigit():
+#             count += v
+#     return count
+
+# best solution
 def count_digits(text: str) -> int:
-    count = 0
-    for k, v in Counter(text).items():
-        if k.isdigit():
-            count += v
-    return count
+    return sum(map(str.isdigit, text))
 
 
 def backward_string_by_word(text: str) -> str:
@@ -95,3 +106,4 @@ def backward_string_by_word(text: str) -> str:
 
 if __name__ == "__main__":
     print(backward_string_by_word("hello  world"))
+    print(list(map(lambda x: x * 2, list(range(5)))))
