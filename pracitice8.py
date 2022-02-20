@@ -1,4 +1,5 @@
 import math
+from typing import Counter
 
 
 def isometric_strings(first_word: str, second_word: str) -> bool:
@@ -56,5 +57,37 @@ def similar_triangles(coords_1: Coords, coords_2: Coords) -> bool:
     return ratio1 == ratio2
 
 
+def verify_anagrams(a: str, b: str) -> bool:
+    return Counter(a.lower().replace(" ", "")) == Counter(b.lower().replace(" ", ""))
+
+
+def unix_match(filename: str, pattern: str) -> bool:
+    if pattern == "*" or pattern == "**":
+        return True
+    if "." not in filename:
+        return False
+    file_no_dot = (
+        "".join(filename.split("."))
+        if Counter(filename)["."] == 1
+        else "".join(filename.split("."))
+        + "." * (len("".join(pattern.split("."))) - len("".join(filename.split("."))))
+    )
+    pattern_no_dot = "".join(pattern.split("."))
+    if len(file_no_dot) != len(pattern_no_dot):
+        if "*" not in pattern_no_dot:
+            return False
+        for i in range(len(pattern_no_dot)):
+            if file_no_dot[i] != pattern[i]:
+                if pattern_no_dot[i] != "?" and pattern_no_dot[i] != "*":
+                    return False
+        return True
+    else:
+        for i in range(len(pattern_no_dot)):
+            if file_no_dot[i] != pattern_no_dot[i]:
+                if pattern_no_dot[i] != "?" and pattern_no_dot[i] != "*":
+                    return False
+    return True
+
+
 if __name__ == "__main__":
-    print(similar_triangles([(0, 0), (0, 3), (2, 0)], [(3, 0), (5, 3), (5, 0)]))
+    print(unix_match("name....", "name.???"))
