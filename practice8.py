@@ -1,18 +1,24 @@
 import math
 from typing import Counter
 
+# def isometric_strings(first_word: str, second_word: str) -> bool:
+#     if first_word == "":
+#         return second_word == ""
+#     result_dict: dict[str, str] = {}
+#     for i in range(len(first_word)):
+#         if first_word[i] in first_word[:i]:
+#             if result_dict[first_word[i]] != second_word[i]:
+#                 return False
+#         else:
+#             result_dict[first_word[i]] = second_word[i]
+#     return True
 
-def isometric_strings(first_word: str, second_word: str) -> bool:
-    if first_word == "":
-        return second_word == ""
-    result_dict: dict[str, str] = {}
-    for i in range(len(first_word)):
-        if first_word[i] in first_word[:i]:
-            if result_dict[first_word[i]] != second_word[i]:
-                return False
-        else:
-            result_dict[first_word[i]] = second_word[i]
-    return True
+
+# best solution
+def isometric_strings(str1: str, str2: str) -> bool:
+    print(set(zip(str1, str2)))
+    print(set(str1))
+    return len(set(zip(str1, str2))) == len(set(str1))
 
 
 Coords = list[tuple[int, int]]
@@ -90,4 +96,4 @@ def unix_match(filename: str, pattern: str) -> bool:
 
 
 if __name__ == "__main__":
-    print(unix_match("name....", "name.???"))
+    print(isometric_strings("egg", "aad"))
